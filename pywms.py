@@ -54,6 +54,10 @@ def crop_sample(left, right, bottom, top, width, height, img):
 
 
 class MyHandler(BaseHTTPServer.BaseHTTPRequestHandler):
+    def end_headers (self):
+        self.send_header('Access-Control-Allow-Origin', '*')
+        BaseHTTPServer.BaseHTTPRequestHandler.end_headers(self)
+
     def do_GET(self):
         if self.path.find('SERVICE=WMS') < 0:
             self.send_response(404)
